@@ -20,7 +20,7 @@ SELECT
 FROM international_debt;
 
 /* 2) Number of distinct countries */
-SELECT COUNT(DISTINCT country_name) AS distinct_country_count
+SELECT COUNT(DISTINCT country_code) AS distinct_country_count
 FROM international_debt;
 
 /* 3) Distinct debt indicators */
@@ -60,7 +60,7 @@ SELECT
     indicator_name,
     ROUND(MAX(debt)::numeric, 2) AS highest_principal_repayment_usd
 FROM international_debt
-WHERE indicator_name ILIKE '%Principal repayments%'
+WHERE indicator_name ILIKE 'Principal repayments%'
 GROUP BY country_name, indicator_name
 ORDER BY highest_principal_repayment_usd DESC
 LIMIT 1;
@@ -91,7 +91,7 @@ SELECT
     country_name,
     ROUND(SUM(debt)::numeric, 2) AS total_interest_payments_usd
 FROM international_debt
-WHERE indicator_name ILIKE '%Interest payments%'
+WHERE indicator_name ILIKE 'Interest payments%'
 GROUP BY country_name
 ORDER BY total_interest_payments_usd DESC
 LIMIT 10;
@@ -101,7 +101,7 @@ SELECT
     country_name,
     ROUND(SUM(debt)::numeric, 2) AS total_disbursements_usd
 FROM international_debt
-WHERE indicator_name ILIKE '%Disbursements%'
+WHERE indicator_name ILIKE 'Disbursements%'
 GROUP BY country_name
 ORDER BY total_disbursements_usd DESC
 LIMIT 10;
