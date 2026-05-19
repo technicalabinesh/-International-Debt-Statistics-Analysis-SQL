@@ -87,7 +87,7 @@ ORDER BY avg_debt_per_record_usd DESC
 LIMIT 10;
 
 -- 9b. Countries with highest interest payment burden
--- DT.INT.% captures interest-related indicators
+-- DT.INT.% captures interest payment indicators (external debt and related creditor categories)
 SELECT
     country_name,
     ROUND(SUM(debt)::numeric, 2) AS total_interest_payments_usd
@@ -98,7 +98,7 @@ ORDER BY total_interest_payments_usd DESC
 LIMIT 10;
 
 -- 9c. Countries with highest disbursements
--- DT.DIS.% captures disbursement-related indicators
+-- DT.DIS.% captures disbursement indicators (new debt disbursements across debt categories)
 SELECT
     country_name,
     ROUND(SUM(debt)::numeric, 2) AS total_disbursements_usd
