@@ -60,7 +60,7 @@ SELECT
     indicator_name,
     ROUND(MAX(debt)::numeric, 2) AS highest_principal_repayment_usd
 FROM international_debt
-WHERE indicator_name ILIKE 'Principal repayments on external debt, long-term%'
+WHERE indicator_code = 'DT.AMT.DLXF.CD'
 GROUP BY country_name, indicator_name
 ORDER BY highest_principal_repayment_usd DESC
 LIMIT 1;
@@ -87,6 +87,7 @@ ORDER BY avg_debt_per_record_usd DESC
 LIMIT 10;
 
 -- 9b. Countries with highest interest payment burden
+-- DT.INT.% captures interest-related indicators
 SELECT
     country_name,
     ROUND(SUM(debt)::numeric, 2) AS total_interest_payments_usd
@@ -97,6 +98,7 @@ ORDER BY total_interest_payments_usd DESC
 LIMIT 10;
 
 -- 9c. Countries with highest disbursements
+-- DT.DIS.% captures disbursement-related indicators
 SELECT
     country_name,
     ROUND(SUM(debt)::numeric, 2) AS total_disbursements_usd
